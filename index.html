@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melodia — Your Music Universe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="logo">
+      <h1>Melodia</h1>
+      <span>Your Music Universe</span>
+    </div>
+
+    <!-- Genre filter -->
+    <div class="sidebar-filters">
+      <div class="filter-label">Genre</div>
+      <div class="filter-chips" id="genreChips"></div>
+    </div>
+
+    <!-- Language filter -->
+    <div class="sidebar-filters" style="border-top:none; padding-top:12px;">
+      <div class="filter-label">Language</div>
+      <div class="filter-chips" id="langChips"></div>
+    </div>
+
+    <!-- Song list -->
+    <div class="sidebar-songs" id="songList"></div>
+  </aside>
+
+  <!-- ── Main Area ── -->
+  <main class="main">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search songs, artists, albums…">
+      </div>
+      <select class="sort-select" id="sortSelect">
+        <option value="default">Sort: Default</option>
+        <option value="name">Song Name A–Z</option>
+        <option value="artist">Artist A–Z</option>
+        <option value="year-desc">Newest First</option>
+        <option value="year-asc">Oldest First</option>
+      </select>
+      <div class="stats-pill">
+        <strong id="visibleCount">80</strong> songs
+      </div>
+    </div>
+
+    <!-- Genre stats row -->
+    <div class="stats-row" id="statsRow"></div>
+
+    <!-- Now Playing + Recommendations -->
+    <div class="now-playing-section">
+
+      <!-- Player card -->
+      <div class="player-card" id="playerCard">
+
+        <!-- Empty state -->
+        <div class="player-empty" id="playerEmpty">
+          <div class="icon">🎵</div>
+          <p>Pick a song from<br>the sidebar to start</p>
+        </div>
+
+        <!-- Active player -->
+        <div id="playerContent" style="display:none">
+          <div class="vinyl" id="vinylDisc"></div>
+          <div class="player-song-name" id="playerSongName">—</div>
+          <div class="player-meta" id="playerMeta"></div>
+          <audio id="audioPlayer" class="audio-player" controls></audio>
+          <button class="play-btn" onclick="togglePlay()">▶ Play / Pause</button>
+        </div>
+
+      </div>
+
+      <!-- Recommendations panel -->
+      <div class="recommendations">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Recommended For You</div>
+            <div class="section-subtitle" id="recSubtitle">Play a song to get smart suggestions</div>
+          </div>
+          <button class="suggest-btn" id="suggestBtn" onclick="suggestNext()" disabled>
+            ✨ Next Suggestion
+          </button>
+        </div>
+        <div class="rec-grid" id="recGrid">
+          <div class="empty-recs">
+            <div class="big">🎧</div>
+            <p>Play any song and we'll find<br>similar tracks you'll love</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── Bottom Player Bar ── -->
+  <div class="player-bar" id="playerBar">
+    <div class="bar-song-info">
+      <div class="bar-song-name" id="barSongName">Nothing playing</div>
+      <div class="bar-artist"    id="barArtist">Select a song to begin</div>
+    </div>
+    <div class="bar-center">
+      <audio id="audioBar" class="bar-audio" controls style="width:100%"></audio>
+    </div>
+    <div class="bar-played">
+      <span id="playedCount">0</span> played
+    </div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
